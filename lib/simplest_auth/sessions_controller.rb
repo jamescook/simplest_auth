@@ -14,7 +14,7 @@ module SimplestAuth
 
     end
 
-    module InstanceMethods
+    included do
 
       def new
         @session = session_class.new

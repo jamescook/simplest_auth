@@ -8,27 +8,10 @@ module SimplestAuth
 
       attr_accessor :email, :password
 
-      validates :email, :presence => true
-      validates :password, :presence => true
+      validates :email, :password, :presence => true
 
       validate :user_exists_for_credentials, :if => :credentials_supplied?
-    end
 
-    module ClassMethods
-      def set_user_class_name(user_class_name)
-        @user_class_name = user_class_name
-      end
-
-      def user_class_name
-        @user_class_name || 'User'
-      end
-
-      def user_class
-        user_class_name.constantize
-      end
-    end
-
-    module InstanceMethods
       def initialize(attributes = {})
         attributes.each {|k,v| send("#{k}=", v) }
       end
@@ -53,6 +36,21 @@ module SimplestAuth
 
       def credentials_supplied?
         email.present? && password.present?
+      end
+
+    end
+
+    module ClassMethods
+      def set_user_class_name(user_class_name)
+        @user_class_name = user_class_name
+      end
+
+      def user_class_name
+        @user_class_name || 'User'
+      end
+
+      def user_class
+        user_class_name.constantize
       end
     end
 

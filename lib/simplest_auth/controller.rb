@@ -53,7 +53,7 @@ module SimplestAuth
 
     def current_user=(user)
       session[session_key] = user ? user.id : nil
-      @current_user = user || false
+      @current_user = user
     end
 
     def current_user_id

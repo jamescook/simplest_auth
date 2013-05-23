@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 require 'rake/testtask'
 
 require File.expand_path('../lib/simplest_auth/version', __FILE__)
@@ -23,7 +23,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('activemodel')
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
+Gem::PackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
 end
 
